@@ -2,6 +2,8 @@ import subprocess
 import re
 import zipfile
 import os
+from operator import truediv
+
 import requests
 import shutil
 import sys
@@ -87,10 +89,18 @@ print(collfile1)
 print(collfile2)
 
 
-#get_itsec_grade(collfile1)
-#get_itsec_grade(collfile2)
+with open("datei1.bin", "wb") as f:
+    f.write(collfile1)
+
+with open("datei2.bin", "wb") as f:
+    f.write(collfile2)
+
+
+get_itsec_grade(collfile1)
+get_itsec_grade(collfile2)
 get_itsec_grade(prefix_1dot0)
-check_files(collfile1, collfile2)
+check_files("datei1.bin", "datei2.bin", False)
+
 
 # Upload them to get a flag :)
 response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
