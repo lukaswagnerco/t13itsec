@@ -78,7 +78,7 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit5.0"
+prefix = b"!!!TUMFile\xff\x07studentx0DIT-Sicherheit5.0"
 prefix_1dot0 = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit1.0\x00"
 
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
@@ -87,8 +87,8 @@ sixtyfour_byte = b""
 
 # Generate your two differing certificates
 # TODO
-collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdfasdfadsfas\x0DIT-Sicherheit1.0\x00"
-collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdfasdfadsfas\x0DIT-Sicherheit5.0\x00"
+collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit1.0\x00"
+collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"
 
 
 
