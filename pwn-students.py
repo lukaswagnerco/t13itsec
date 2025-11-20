@@ -83,6 +83,8 @@ prefix_1dot0 = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit1.0\x00"
 
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
+sixtyfour_byte = b""
+
 # Generate your two differing certificates
 # TODO
 
@@ -98,7 +100,7 @@ with open("datei2", "wb") as f:
 
 
 #get_itsec_grade(collfile1)
-get_itsec_grade(collfile2)
+get_itsec_grade(datei1)
 #get_itsec_grade(prefix_1dot0)
 #check_files("datei1", "datei2", False)
 
