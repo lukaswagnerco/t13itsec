@@ -85,21 +85,22 @@ collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 # Generate your two differing certificates
 # TODO
+
 print(collfile1)
 print(collfile2)
 
 
-with open("datei1.bin", "wb") as f:
+with open("datei1", "wb") as f:
     f.write(collfile1)
 
-with open("datei2.bin", "wb") as f:
+with open("datei2", "wb") as f:
     f.write(collfile2)
 
 
 #get_itsec_grade(collfile1)
-#get_itsec_grade(collfile2)
-get_itsec_grade(prefix_1dot0)
-check_files("datei1.bin", "datei2.bin", False)
+get_itsec_grade(collfile2)
+#get_itsec_grade(prefix_1dot0)
+#check_files("datei1", "datei2", False)
 
 
 # Upload them to get a flag :)
