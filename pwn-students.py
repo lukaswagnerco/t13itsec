@@ -84,6 +84,9 @@ collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 # Generate your two differing certificates
 # TODO
+print(f"original length of collfile1: {len(collfile1)}")
+print(f"original length of collfile2: {len(collfile2)}")
+
 with open("datei3", "wb") as f:
     f.write(collfile1)
 
