@@ -78,7 +78,7 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07studentX\x2d"
+prefix = b"!!!TUMFile\xff\x07studentX\x2c"
 
 byte_64_sufix = b"aaaaaaaaaaaaaaaaaaaaaaaaaa\x02\x0DIT-Sicherheit5.0\x18\x02\x0DIT-Sicherheit1.0\x00"
 
@@ -106,7 +106,26 @@ get_itsec_grade(collfile1)
 get_itsec_grade(collfile2)
 
 for i in range(256):
-    if collfile1[i] != collfile2[i]: print(f"erste unterschiedliche stelle: {i}")
+    if collfile1[i] != collfile2[i]: print(f"unterschiedliche stelle: {i}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 with open("datei1", "wb") as f:
@@ -114,7 +133,6 @@ with open("datei1", "wb") as f:
 
 with open("datei2", "wb") as f:
     f.write(collfile2)
-
 
 check_files('datei1', 'datei2')
 
