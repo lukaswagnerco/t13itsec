@@ -80,7 +80,7 @@ if fastcoll_bin is None:
 # Adjust this to suite your needs
 prefix = b"!!!TUMFile\xff\x07studentX\x3e"
 
-byte_64_sufix = b"aaaaaaaaaaaaaaaaaaaaaaaaaa\x02\x0DIT-Sicherheit5.0\x18\x02\x0DIT-Sicherheit1.0\x00"
+byte_64_sufix = b"\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\x02\x0DIT-Sicherheit5.0\x00X\x18\x02\x0DIT-Sicherheit1.0\x00"
 
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
@@ -105,5 +105,16 @@ print(f"Byte at colfile2 65 is: {collfile2[65]}")
 for i in range(256):
     if collfile1[i] != collfile2[i]:
         print(f"unterschiedliche stelle: {i} und ist in 1: {collfile1[i]} und in 2: {collfile2[i]}")
-        break
 
+
+with open("datei1", "wb") as f:
+    f.write(collfile1)
+
+with open("datei2", "wb") as f:
+    f.write(collfile2)
+
+check_files('datei1', 'datei2')
+
+# Upload them to get a flag :)
+response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
+print(response.text)
