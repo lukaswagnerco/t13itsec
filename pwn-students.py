@@ -83,6 +83,9 @@ collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 # Generate your two differing certificates
 # TODO
+print(collfile1)
+print(collfile2)
+
 
 get_itsec_grade(collfile1)
 get_itsec_grade(collfile2)
