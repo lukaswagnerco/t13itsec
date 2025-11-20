@@ -78,7 +78,7 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07studentX\xd9"
+prefix = b"!!!TUMFile\xff\x07studentX\x2b"
 
 byte_64_sufix = b"aaaaaaaaaaaaaaaaaaaaaaaaaa\x02\x0DIT-Sicherheit5.0\x18\x02\x0DIT-Sicherheit1.0\x00"
 
