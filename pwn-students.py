@@ -87,20 +87,21 @@ sixtyfour_byte = b""
 
 # Generate your two differing certificates
 # TODO
+collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdfasdfadsfas\x0DIT-Sicherheit1.0\x00"
+collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdfasdfadsfas\x0DIT-Sicherheit5.0\x00"
 
-print(collfile1)
-print(collfile2)
 
 
-with open("datei1", "wb") as f:
-    f.write(collfile1)
+#with open("datei1", "wb") as f:
+ #   f.write(collfile1)
 
-with open("datei2", "wb") as f:
-    f.write(collfile2)
+#with open("datei2", "wb") as f:
+ #   f.write(collfile2)
+
 
 
 #get_itsec_grade(collfile1)
-get_itsec_grade("datei1")
+get_itsec_grade(collfile1)
 #get_itsec_grade(prefix_1dot0)
 #check_files("datei1", "datei2", False)
 
