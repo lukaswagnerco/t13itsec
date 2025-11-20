@@ -93,7 +93,7 @@ def build_suffix(jump1, jump2):
         jump1 = jump2
         jump2 = temp
 
-    total_length = jump2 + len(grade_5) + 1
+    total_length = jump2 + len(grade_5)
 
     suffix = bytearray(total_length)
 
