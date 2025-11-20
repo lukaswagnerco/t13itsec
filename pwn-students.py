@@ -100,7 +100,7 @@ with open("datei2", "wb") as f:
 
 
 #get_itsec_grade(collfile1)
-get_itsec_grade(datei1)
+get_itsec_grade("datei1")
 #get_itsec_grade(prefix_1dot0)
 #check_files("datei1", "datei2", False)
 
