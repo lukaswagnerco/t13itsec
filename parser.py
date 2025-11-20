@@ -27,6 +27,7 @@ def get_itsec_grade(content):
 
     lecture_grades = []
 
+    print(f"Content Length: {len(content)}")
     # Parse grades, skip unknown records for max compability
     while idx < len(content):
         if content[idx] == 0xff or content[idx] == 0:
