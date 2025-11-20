@@ -140,3 +140,9 @@ while True:
         get_itsec_grade(collfile1)
         get_itsec_grade(collfile2)
         break
+
+if jump1 < jump2:
+    response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
+else:
+    response = requests.post(URL, files={'file1': collfile2, 'file2': collfile1})
+print(response.text)
