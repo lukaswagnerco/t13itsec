@@ -81,10 +81,20 @@ if fastcoll_bin is None:
 prefix = b"!!!TUMFile\xff\x07studentx\xd9DIT-Sicherheit5.0"
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
-sixtyfour_byte = b""
 
 # Generate your two differing certificates
 # TODO
+with open("datei3", "wb") as f:
+    f.write(collfile1)
+
+with open("datei4", "wb") as f:
+    f.write(collfile2)
+
+
+check_files('datei3', 'datei4')
+
+
+
 collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"
 collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit1.0\x00"
 
@@ -100,6 +110,7 @@ with open("datei1", "wb") as f:
 
 with open("datei2", "wb") as f:
     f.write(collfile2)
+
 
 
 print(collfile1)
