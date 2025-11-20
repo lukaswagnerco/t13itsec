@@ -93,12 +93,14 @@ while True:
     print(f"length of collfile2: {len(collfile2)} with content:\n {collfile2}")
     if collfile1[187] != collfile2[187]:
         print(f"unterschiedliche stelle: 187 und ist in 1: {collfile1[187]} und in 2: {collfile2[187]}")
-        jump1 = collfile1[187] + 187
-        jump2 = collfile2[187] + 187
+        jump1 = collfile1[187] + 5
+        jump2 = collfile2[187] + 5
         if ((jump1 < 192) and (jump2 < 192)):
             continue
-        if not(abs(jump1-jump2) > 9):
+        if not (abs(jump1-jump2) > 9):
             continue
         print(f"jump1: {jump1}")
         print(f"jump2: {jump2}")
+        get_itsec_grade(collfile1)
+        get_itsec_grade(collfile2)
         break
