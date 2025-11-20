@@ -82,7 +82,6 @@ prefix = b"!!!TUMFile\xff\x07studentX\xa9"
 
 byte_64_sufix = b"\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\x02\x0DIT-Sicherheit5.0\x00X\x18\x02\x0DIT-Sicherheit1.0\x00"
 
-collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 
 # Generate your two differing certificates
