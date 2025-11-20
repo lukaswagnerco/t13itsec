@@ -105,7 +105,8 @@ print(f"Byte at colfile2 65 is: {collfile2[65]}")
 get_itsec_grade(collfile1)
 get_itsec_grade(collfile2)
 
-
+for i in range(256):
+    if collfile1[i] != collfile2[i]: print(i)
 
 
 with open("datei1", "wb") as f:
