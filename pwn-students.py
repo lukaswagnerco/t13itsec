@@ -96,8 +96,8 @@ with open("datei2.bin", "wb") as f:
     f.write(collfile2)
 
 
-get_itsec_grade(collfile1)
-get_itsec_grade(collfile2)
+#get_itsec_grade(collfile1)
+#get_itsec_grade(collfile2)
 get_itsec_grade(prefix_1dot0)
 check_files("datei1.bin", "datei2.bin", False)
 
