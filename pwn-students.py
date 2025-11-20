@@ -103,7 +103,7 @@ def build_suffix(jump1, jump2):
     jump_position = jump1+len(grade_1)+2
     jump_distance = jump_target-jump_position
 
-    suffix[jump_position-2] = b"\x01"
+    suffix[(jump_position-2)] = 0x01
     suffix[jump_position-1] = jump_distance
 
     suffix[jump2 : jump2+len(grade_5)] = grade_5
