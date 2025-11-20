@@ -95,11 +95,11 @@ print(len(collfile2))
 
 
 
-#with open("datei1", "wb") as f:
- #   f.write(collfile1)
+with open("datei1", "wb") as f:
+    f.write(collfile1)
 
-#with open("datei2", "wb") as f:
- #   f.write(collfile2)
+with open("datei2", "wb") as f:
+    f.write(collfile2)
 
 
 print(collfile1)
@@ -107,6 +107,7 @@ print(collfile2)
 get_itsec_grade(collfile1)
 get_itsec_grade(collfile2)
 
+check_files('datei1', 'datei2')
 
 # Upload them to get a flag :)
 response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
