@@ -135,7 +135,7 @@ while True:
         print(f"jump2: {jump2}")
         if ((jump1 < 10) or (jump2 < 10)):
             continue
-        if not (abs(jump1-jump2) < 25):
+        if (abs(jump1-jump2) < 25):
             continue
         suffix = build_suffix(jump1, jump2)
         collfile1 += suffix
