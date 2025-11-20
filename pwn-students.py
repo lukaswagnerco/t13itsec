@@ -6,6 +6,8 @@ import requests
 import shutil
 import sys
 
+from parser import get_itsec_grade, check_files
+
 FASTCOLL_ZIPNAME = 'fastcoll.zip'
 FASTCOLL_DIR = 'fastcoll'
 FASTCOLL_EXE = 'fastcoll'
@@ -81,10 +83,11 @@ collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 # Generate your two differing certificates
 # TODO
-print(collfile1)
-print(collfile2)
 
-
+get_itsec_grade(collfile1)
+get_itsec_grade(collfile2)
+get_itsec_grade(prefix_1dot0)
+check_files(collfile1, collfile2)
 
 # Upload them to get a flag :)
 response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
