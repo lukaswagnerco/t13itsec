@@ -78,9 +78,45 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07studentX\xa9"
 
-byte_64_sufix = b"\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\x02\x0DIT-Sicherheit5.0\x00X\x18\x02\x0DIT-Sicherheit1.0\x00"
+
+def build_suffix(jump1, jump2):
+    grade_5 = b"\x02\x0dIT-Sicherheit5.0\x00"
+    grade_1 = b"\x02\x0dIT-Sicherheit1.0\x00"
+
+
+    jump1 -= 4
+    jump2 -= 4
+
+    if jump1 > jump2:
+        temp = jump1
+        jump1 = jump2
+        jump2 = temp
+
+    total_length = jump2 + len(grade_5) + 5
+
+    suffix = bytearray(total_length)
+
+    suffix[jump1 : jump1+len(grade_1)] = grade_1
+
+    jump_target = jump2+len(grade_5)
+    jump_position = jump1+len(grade_1)+2
+    jump_distance = jump_target-jump_position
+
+    suffix[jump_position-2] = b"\x01"
+    suffix[jump_position-1] = jump_distance
+
+    suffix[jump2 : jump2+len(grade_5)] = grade_5
+
+    mod = len(suffix)%64
+
+    for i in range(mod):
+        suffix += b"\x01"
+
+    return suffix
+
+prefix = b"!!!TUMFile\xff\x07studentX\xa7"
+
 
 
 
@@ -92,15 +128,20 @@ while True:
     print(f"length of collfile1: {len(collfile1)} with content:\n {collfile1}")
     print(f"length of collfile2: {len(collfile2)} with content:\n {collfile2}")
     if collfile1[187] != collfile2[187]:
-        print(f"unterschiedliche stelle: 187 und ist in 1: {collfile1[187]} und in 2: {collfile2[187]}")
-        jump1 = collfile1[187] + 5
-        jump2 = collfile2[187] + 5
-        if ((jump1 < 192) and (jump2 < 192)):
-            continue
-        if not (abs(jump1-jump2) > 9):
-            continue
+        print(f"unterschiedliche stelle: 187 und ist in collfile1: {collfile1[187]} und in collfile2: {collfile2[187]}")
+        jump1 = collfile1[187]
+        jump2 = collfile2[187]
         print(f"jump1: {jump1}")
         print(f"jump2: {jump2}")
+        if ((jump1 < 10) or (jump2 < 10)):
+            continue
+        if not (abs(jump1-jump2) < 25):
+            continue
+        suffix = build_suffix(jump1, jump2)
+        collfile1 += suffix
+        collfile2 += suffix
+        print(f"length of collfile1: {len(collfile1)} with content:\n {collfile1}")
+        print(f"length of collfile2: {len(collfile2)} with content:\n {collfile2}")
         get_itsec_grade(collfile1)
         get_itsec_grade(collfile2)
         break
