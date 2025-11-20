@@ -65,9 +65,6 @@ def create_md5_collision(prefix, fastcoll_bin):
     with open(collfile1, 'rb') as cf1, open(collfile2, 'rb') as cf2:
         return (cf1.read(), cf2.read())
 
-setup()
-
-
 fastcoll_bin = shutil.which("fastcoll")
 if fastcoll_bin is None:
     # Try to setup fastcoll if not installed.
@@ -77,7 +74,7 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07student"
+prefix = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit5.0\x00"
 
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
