@@ -78,7 +78,7 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07studentX\x3e"
+prefix = b"!!!TUMFile\xff\x07studentX\xa9"
 
 byte_64_sufix = b"\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\01\x02\x0DIT-Sicherheit5.0\x00X\x18\x02\x0DIT-Sicherheit1.0\x00"
 
@@ -87,22 +87,19 @@ collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 # Generate your two differing certificates
 # TODO
-print(f"original length of collfile1: {len(collfile1)}")
-print(f"original length of collfile2: {len(collfile2)}")
-print(f"length of sufix: {len(byte_64_sufix)}")
 
-
-collfile1 += byte_64_sufix
-collfile2 += byte_64_sufix
-
-
-print(f"new length of collfile1: {len(collfile1)} with content:\n {collfile1}")
-print(f"new length of collfile2: {len(collfile2)} with content:\n {collfile2}")
-
-print(f"Byte at colfile1 65 is: {collfile1[65]}")
-print(f"Byte at colfile2 65 is: {collfile2[65]}")
-
-for i in range(256):
-    if collfile1[i] != collfile2[i]:
-        print(f"unterschiedliche stelle: {i} und ist in 1: {collfile1[i]} und in 2: {collfile2[i]}")
-
+while True:
+    collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
+    print(f"length of collfile1: {len(collfile1)} with content:\n {collfile1}")
+    print(f"length of collfile2: {len(collfile2)} with content:\n {collfile2}")
+    if collfile1[187] != collfile2[187]:
+        print(f"unterschiedliche stelle: 187 und ist in 1: {collfile1[187]} und in 2: {collfile2[187]}")
+        jump1 = collfile1[187] + 187
+        jump2 = collfile2[187] + 187
+        if ((jump1 < 192) and (jump2 < 192)):
+            continue
+        if not(abs(jump1-jump2) > 9):
+            continue
+        print(f"jump1: {jump1}")
+        print(f"jump2: {jump2}")
+        break
