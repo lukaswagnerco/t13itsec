@@ -79,21 +79,19 @@ if fastcoll_bin is None:
 
 # Adjust this to suite your needs
 prefix = b"!!!TUMFile\xff\x07studentx\xd9DIT-Sicherheit5.0"
-prefix_1dot0 = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit1.0\x00"
-
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 sixtyfour_byte = b""
 
 # Generate your two differing certificates
 # TODO
-collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit1.0\x00"
-collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"
+collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"
+collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit1.0\x00"
 
 print(len(collfile1))
 print(len(collfile2))
 
-print(collfile1[19])
+
 
 #with open("datei1", "wb") as f:
  #   f.write(collfile1)
@@ -103,10 +101,9 @@ print(collfile1[19])
 
 
 print(collfile1)
-#get_itsec_grade(collfile1)
+print(collfile2)
 get_itsec_grade(collfile1)
-#get_itsec_grade(prefix_1dot0)
-#check_files("datei1", "datei2", False)
+get_itsec_grade(collfile2)
 
 
 # Upload them to get a flag :)
