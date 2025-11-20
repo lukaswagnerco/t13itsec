@@ -87,8 +87,8 @@ print(collfile1)
 print(collfile2)
 
 
-get_itsec_grade(collfile1)
-get_itsec_grade(collfile2)
+#get_itsec_grade(collfile1)
+#get_itsec_grade(collfile2)
 get_itsec_grade(prefix_1dot0)
 check_files(collfile1, collfile2)
 
