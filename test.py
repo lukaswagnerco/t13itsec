@@ -9,3 +9,15 @@ print(len(prefix))
 
 
 
+
+with open("datei1", "wb") as f:
+    f.write(collfile1)
+
+with open("datei2", "wb") as f:
+    f.write(collfile2)
+
+check_files('datei1', 'datei2')
+
+# Upload them to get a flag :)
+response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
+print(response.text)

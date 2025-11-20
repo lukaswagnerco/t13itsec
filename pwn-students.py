@@ -106,15 +106,3 @@ for i in range(256):
     if collfile1[i] != collfile2[i]:
         print(f"unterschiedliche stelle: {i} und ist in 1: {collfile1[i]} und in 2: {collfile2[i]}")
 
-
-with open("datei1", "wb") as f:
-    f.write(collfile1)
-
-with open("datei2", "wb") as f:
-    f.write(collfile2)
-
-check_files('datei1', 'datei2')
-
-# Upload them to get a flag :)
-response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
-print(response.text)
