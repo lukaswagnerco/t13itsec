@@ -78,7 +78,10 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07studentx\xd9DIT-Sicherheit5.0"
+prefix = b"!!!TUMFile\xff\x07studentX\xd9"
+
+byte_64_sufix = b"aaaaaaaaaaaaaaaaaaaaaaaaaa\x02\x0DIT-Sicherheit5.0\x18\x02\x0DIT-Sicherheit1.0\x00"
+
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 
 
@@ -86,25 +89,22 @@ collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
 # TODO
 print(f"original length of collfile1: {len(collfile1)}")
 print(f"original length of collfile2: {len(collfile2)}")
-
-with open("datei3", "wb") as f:
-    f.write(collfile1)
-
-with open("datei4", "wb") as f:
-    f.write(collfile2)
+print(f"length of sufix: {len(byte_64_sufix)}")
 
 
-check_files('datei3', 'datei4')
+collfile1 += byte_64_sufix
+collfile2 += byte_64_sufix
 
 
+print(f"new length of collfile1: {len(collfile1)} with content:\n {collfile1}")
+print(f"new length of collfile2: {len(collfile2)} with content:\n {collfile2}")
 
-collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"
-collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit1.0\x00"
+print(f"Byte at colfile1 65 is: {collfile1[65]}")
+print(f"Byte at colfile2 65 is: {collfile2[65]}")
 
-print(len(b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"))
+get_itsec_grade(collfile1)
+get_itsec_grade(collfile2)
 
-print(len(collfile1))
-print(len(collfile2))
 
 
 
@@ -114,12 +114,6 @@ with open("datei1", "wb") as f:
 with open("datei2", "wb") as f:
     f.write(collfile2)
 
-
-
-print(collfile1)
-print(collfile2)
-get_itsec_grade(collfile1)
-get_itsec_grade(collfile2)
 
 check_files('datei1', 'datei2')
 
