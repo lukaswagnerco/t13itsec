@@ -88,6 +88,8 @@ sixtyfour_byte = b""
 collfile1 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"
 collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit1.0\x00"
 
+print(len(b"asdfasdfadsfasdfasdfasdfadsfasdfasdasdfasdfaa\x02\x0DIT-Sicherheit5.0\x00"))
+
 print(len(collfile1))
 print(len(collfile2))
 
