@@ -78,7 +78,7 @@ if fastcoll_bin is None:
     fastcoll_bin = f"{FASTCOLL_DIR}/{FASTCOLL_EXE}"
 
 # Adjust this to suite your needs
-prefix = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit5.0\x00"
+prefix = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit5.0"
 prefix_1dot0 = b"!!!TUMFile\xff\x07student\x02\x0DIT-Sicherheit1.0\x00"
 
 collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
@@ -99,7 +99,7 @@ collfile2 += b"asdfasdfadsfasdfasdfasdfadsfasdfasdfasdfadsfas\x0DIT-Sicherheit5.
  #   f.write(collfile2)
 
 
-
+print(collfile1)
 #get_itsec_grade(collfile1)
 get_itsec_grade(collfile1)
 #get_itsec_grade(prefix_1dot0)
