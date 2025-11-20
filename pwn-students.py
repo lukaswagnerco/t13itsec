@@ -85,15 +85,15 @@ def build_suffix(jump1, jump2):
     grade_1 = b"\x02\x0dIT-Sicherheit1.0\x00"
 
 
-    jump1 -= 4
-    jump2 -= 4
+    jump1 -= 5
+    jump2 -= 5
 
     if jump1 > jump2:
         temp = jump1
         jump1 = jump2
         jump2 = temp
 
-    total_length = jump2 + len(grade_5) + 5
+    total_length = jump2 + len(grade_5) + 1
 
     suffix = bytearray(total_length)
 
@@ -110,7 +110,7 @@ def build_suffix(jump1, jump2):
 
     mod = len(suffix)%64
 
-    for i in range(mod):
+    for i in range(64-mod):
         suffix += b"\x01"
 
     return suffix
