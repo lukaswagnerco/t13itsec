@@ -108,11 +108,6 @@ def build_suffix(jump1, jump2):
 
     suffix[jump2 : jump2+len(grade_5)] = grade_5
 
-    mod = len(suffix)%64
-
-    for i in range(64-mod):
-        suffix += b"\x01"
-
     return suffix
 
 prefix = b"!!!TUMFile\xff\x07studentX\xa6"
