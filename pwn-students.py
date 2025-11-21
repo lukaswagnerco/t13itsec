@@ -8,7 +8,6 @@ import requests
 import shutil
 import sys
 
-from parser import get_itsec_grade, check_files
 
 FASTCOLL_ZIPNAME = 'fastcoll.zip'
 FASTCOLL_DIR = 'fastcoll'
@@ -113,36 +112,41 @@ def build_suffix(jump1, jump2):
 prefix = b"!!!TUMFile\xff\x07studentX\xa6"
 
 
-
-
 # Generate your two differing certificates
 # TODO
 
 while True:
     collfile1, collfile2 = create_md5_collision(prefix, fastcoll_bin)
+
     print(f"length of collfile1: {len(collfile1)} with content:\n {collfile1}")
     print(f"length of collfile2: {len(collfile2)} with content:\n {collfile2}")
+
     if collfile1[187] != collfile2[187]:
+
         print(f"unterschiedliche stelle: 187 und ist in collfile1: {collfile1[187]} und in collfile2: {collfile2[187]}")
+
         jump1 = collfile1[187]
         jump2 = collfile2[187]
+
         print(f"jump1: {jump1}")
         print(f"jump2: {jump2}")
+
         if ((jump1 < 10) or (jump2 < 10)):
             continue
         if (abs(jump1-jump2) < 25):
             continue
+
         suffix = build_suffix(jump1, jump2)
         collfile1 += suffix
         collfile2 += suffix
+
         print(f"length of collfile1: {len(collfile1)} with content:\n {collfile1}")
         print(f"length of collfile2: {len(collfile2)} with content:\n {collfile2}")
-        get_itsec_grade(collfile1)
-        get_itsec_grade(collfile2)
         break
 
 if jump1 < jump2:
     response = requests.post(URL, files={'file1': collfile1, 'file2': collfile2})
 else:
     response = requests.post(URL, files={'file1': collfile2, 'file2': collfile1})
+
 print(response.text)
